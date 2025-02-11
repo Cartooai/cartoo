@@ -15,7 +15,7 @@ function HomePage() {
                     className="max-w-4xl mx-auto px-4"
                 >
                     <img
-                        src="/public/cartoo-logo-croped.png"
+                        src="/cartoo-logo-croped.png"
                         alt="Cart-oo Ai"
                         className="w-80 md:w-72 lg:w-80 mb-[40] md:mb-12"
                     />
@@ -35,7 +35,7 @@ function HomePage() {
             </Container>
             <div>
                 <img
-                    src="/public/onboarding_page_1.jpg"
+                    src="/onboarding_page_1.jpg"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover object-right-bottom"
                 />
@@ -54,7 +54,7 @@ function HomePage() {
             </div>
             <div>
                 <img
-                    src="/public/onboarding_page_2.jpg"
+                    src="/onboarding_page_2.jpg"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover object-center"
                 />
@@ -74,7 +74,7 @@ function HomePage() {
             </div>
             <div>
                 <img
-                    src="/public/onboarding_page_3.png"
+                    src="/onboarding_page_3.png"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover"
                 />
