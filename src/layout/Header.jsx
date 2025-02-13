@@ -20,7 +20,7 @@ function Header() {
                             h="70px"
                             w="100px"
                             fit="contain"
-                            src="/src/assets/cartoo-logo-removebg-preview.png"
+                            src="/cartoo-logo-removebg-preview.png"
                         />
                     </a>
                     <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

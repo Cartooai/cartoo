@@ -9,23 +9,23 @@ const Interest = () => {
     const navigate = useNavigate();
 
     const interests = [
-        { id: 'neutral', label: 'Neutral', image: '../../../public/interests/neutral.png' },
-        { id: 'vintage', label: 'Vintage', image: '../../../public/interests/vintage.png' },
-        { id: 'trendy', label: 'Trendy', image: '../../../public/interests/trendy.png' },
-        { id: 'timeless', label: 'Timeless', image: '../../../public/interests/timeless.png' },
-        { id: 'cosy', label: 'Cosy', image: '../../../public/interests/cosy.png' },
-        { id: 'natural', label: 'Natural', image: '../../../public/interests/natural.png' },
-        { id: 'bohemian', label: 'Bohemian', image: '../../../public/interests/bohemian.png' },
-        { id: 'statement_pieces', label: 'Statement Pieces', image: '../../../public/interests/statement_pieces.png' },
-        { id: 'classic', label: 'Classic', image: '../../../public/interests/classic.png' },
-        { id: 'sustianable', label: 'Sustainable', image: '../../../public/interests/sustainable.png' },
-        { id: 'scandinivian', label: 'Scandinivian', image: '../../../public/interests/scandinivian.png' },
-        { id: 'patterns', label: 'Patterns', image: '../../../public/interests/patterns.png' },
-        { id: 'bold_colors', label: 'Bold Colors', image: '../../../public/interests/bold_colors.png' },
-        { id: 'formal', label: 'Formal', image: '../../../public/interests/formal.png' },
-        { id: 'comfort', label: 'Comfort', image: '../../../public/interests/comfort.png' },
-        { id: 'eco_friendly', label: 'Eco friendly', image: '../../../public/interests/eco_friendly.png' },
-    ];
+      { id: 'neutral', label: 'Neutral', image: '/interests/neutral.png' },
+      { id: 'vintage', label: 'Vintage', image: '/interests/vintage.png' },
+      { id: 'trendy', label: 'Trendy', image: '/interests/trendy.png' },
+      { id: 'timeless', label: 'Timeless', image: '/interests/timeless.png' },
+      { id: 'cosy', label: 'Cosy', image: '/interests/cosy.png' },
+      { id: 'natural', label: 'Natural', image: '/interests/natural.png' },
+      { id: 'bohemian', label: 'Bohemian', image: '/interests/bohemian.png' },
+      { id: 'statement_pieces', label: 'Statement Pieces', image: '/interests/statement_pieces.png' },
+      { id: 'classic', label: 'Classic', image: '/interests/classic.png' },
+      { id: 'sustianable', label: 'Sustainable', image: '/interests/sustainable.png' },
+      { id: 'scandinivian', label: 'Scandinivian', image: '/interests/scandinivian.png' },
+      { id: 'patterns', label: 'Patterns', image: '/interests/patterns.png' },
+      { id: 'bold_colors', label: 'Bold Colors', image: '/interests/bold_colors.png' },
+      { id: 'formal', label: 'Formal', image: '/interests/formal.png' },
+      { id: 'comfort', label: 'Comfort', image: '/interests/comfort.png' },
+      { id: 'eco_friendly', label: 'Eco friendly', image: '/interests/eco_friendly.png' },
+  ];
 
     const toggleInterest = (id) => {
         setSelectedInterests(prev => 
