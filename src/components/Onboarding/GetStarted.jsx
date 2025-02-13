@@ -9,7 +9,7 @@ function GetStarted() {
         <Container fluid className="bg-[#F2D478] h-96 flex flex-col items-center justify-center">
             <Stack>
                 <Box>
-                    <Image src="../../../public/Cartos_face-removebg-preview.png" alt="Nature" />
+                    <Image src="/Cartos_face-removebg-preview.png" alt="Nature" />
                 </Box>
             </Stack>
         </Container>
