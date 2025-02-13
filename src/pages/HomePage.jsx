@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Image, HStack, Stack, VStack, Text, Button } from "@chakra-ui/react";
+import { Container, Flex, Image, HStack, Stack, VStack, Text, Button } from "@chakra-ui/react";
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ function HomePage() {
                             100
                         ]}
                         repeat={Infinity}
-                        className="mt-4 text-xl md:text-3xl lg:text-4xl font-medium text-center leading-tight md:leading-normal" 
+                        className="mt-4 text-xl md:text-3xl lg:text-4xl font-medium text-center leading-tight md:leading-normal"
                     />
                 </Flex>
             </Container>
@@ -38,6 +38,7 @@ function HomePage() {
                     src="/onboarding_page_1.jpg"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover object-right-bottom"
+                    loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#FAECAA] h-[400px]">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -57,6 +58,7 @@ function HomePage() {
                     src="/onboarding_page_2.jpg"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover object-center"
+                    loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#FC864E] h-[400px]">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -77,6 +79,7 @@ function HomePage() {
                     src="/onboarding_page_3.png"
                     alt="Featured image 1"
                     className="w-full h-[400px] md:h-[600px] object-cover"
+                    loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#97D5EE] h-[400px]">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
