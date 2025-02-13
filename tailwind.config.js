@@ -5,6 +5,6 @@ export default {
     extend: {},
   },
   plugins: [],
-  darkMode: false,
+  darkMode: 'false',
 }
 
