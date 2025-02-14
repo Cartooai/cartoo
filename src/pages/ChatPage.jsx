@@ -66,7 +66,7 @@ const ChatPage = () => {
 
   return (
     <div className="min-h-screen bg-white p-4 flex flex-col">
-      <div className="w-full max-w-5xl mx-auto flex flex-col h-screen">
+      <div className="w-full max-w-5xl mx-auto flex flex-col">
         <h1 className="text-xl font-semibold mb-6 text-center">
           What is making its way to your cart today?
         </h1>
