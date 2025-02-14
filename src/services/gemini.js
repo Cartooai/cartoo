@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { fetchProducts } from "./shopify";
 import supabaseClient from "./supabaseClient";
+import { isProductQuery } from "@/utils/messageUtils";
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -110,14 +111,23 @@ async function generatePersonalizedRecommendations(userInput, shopifyData, userP
 }
 
 // Example usage
-async function getRecommendations(userInput) {
+async function getRecommendations(message) {
   try {
-    // Get user session and profile
+    // If it's not a product query, use Gemini for normal conversation
+    if (!isProductQuery(message)) {
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+      const result = await model.generateContent(message);
+      return {
+        type: 'conversation',
+        content: result.response.text()
+      };
+    }
+
+    // Existing product recommendation logic
     const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
     if (sessionError) throw new Error('Failed to get user session: ' + sessionError.message);
     if (!session?.user?.id) throw new Error('No authenticated user found');
 
-    // Fetch user profile
     const { data: profile, error: profileError } = await supabaseClient
       .from('Profiles')
       .select('age, gender, location, interest')
@@ -125,18 +135,19 @@ async function getRecommendations(userInput) {
       .single();
     
     if (profileError) throw new Error('Failed to fetch profile: ' + profileError.message);
-
-     // Fetch products from Shopify
-     const shopifyData = await fetchProducts();
-
-    // Generate personalized recommendations
+    
+    const shopifyData = await fetchProducts();
+    
     const recommendations = await generatePersonalizedRecommendations(
-      userInput,
+      message,
       shopifyData,
       profile
     );
 
-    return recommendations;
+    return {
+      type: 'recommendation',
+      content: recommendations
+    };
   } catch (error) {
     console.error("Error in getRecommendations:", error);
     return { error: error.message };

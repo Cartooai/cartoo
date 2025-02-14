@@ -24,24 +24,22 @@ const ChatPage = () => {
     setMessage('');
 
     try {
-      // Get personalized recommendations
-      const recommendations = await getRecommendations(message);
-
-      if (recommendations.error) {
-        throw new Error(recommendations.error);
+      const response = await getRecommendations(message);
+      
+      if (response.error) {
+        throw new Error(response.error);
       }
 
-      // Create AI response message with recommendations
       const aiMessage = {
         role: 'assistant',
-        content: recommendations,
+        content: response.content,
         timestamp: new Date().toISOString(),
-        isRecommendation: true // Flag to identify recommendation messages
+        type: response.type
       };
 
       setChatHistory(prev => [...prev, aiMessage]);
     } catch (err) {
-      setError(`Failed to get recommendations: ${err.message}`);
+      setError(`Failed to get response: ${err.message}`);
       console.error('Chat error:', err);
     } finally {
       setIsLoading(false);
@@ -49,7 +47,7 @@ const ChatPage = () => {
   };
 
   const renderMessage = (chat) => {
-    if (chat.isRecommendation) {
+    if (chat.type === 'recommendation') {
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {chat.content.map((product, index) => (
@@ -60,7 +58,7 @@ const ChatPage = () => {
     }
 
     return (
-      <p className="break-words">{chat.content}</p>
+      <p className="break-words whitespace-pre-wrap">{chat.content}</p>
     );
   };
 
@@ -70,22 +68,20 @@ const ChatPage = () => {
         <h1 className="text-xl font-semibold mb-6 text-center">
           What is making its way to your cart today?
         </h1>
-        
+
         {/* Chat Messages */}
         <div className="flex-1 overflow-auto mb-6 space-y-4">
           {chatHistory.map((chat, index) => (
             <div
               key={index}
-              className={`flex ${
-                chat.role === 'user' ? 'justify-end' : 'justify-start'
-              }`}
+              className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'
+                }`}
             >
               <div
-                className={`${
-                  chat.role === 'user'
+                className={`${chat.role === 'user'
                     ? 'bg-blue-500 text-white max-w-[80%]'
                     : 'bg-gray-100 text-black w-full'
-                } rounded-lg p-4`}
+                  } rounded-lg p-4`}
               >
                 {renderMessage(chat)}
                 <span className="text-xs opacity-70 mt-1 block">
@@ -94,7 +90,7 @@ const ChatPage = () => {
               </div>
             </div>
           ))}
-          
+
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-gray-100 rounded-lg p-4">
@@ -102,7 +98,7 @@ const ChatPage = () => {
               </div>
             </div>
           )}
-          
+
           {error && (
             <div className="flex justify-center">
               <div className="bg-red-100 text-red-600 rounded-lg p-4">
