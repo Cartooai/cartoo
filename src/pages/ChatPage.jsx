@@ -1,64 +1,68 @@
 import React, { useState } from 'react';
-import { getRecommendations } from '../services/gemini';
-import ProductCard from './ProductCard';
+import { getRecommendations } from '../services/gemini'; // Import function to fetch product recommendations
+import ProductCard from './ProductCard'; // Import component to display individual product details
 
 const ChatPage = () => {
-  const [message, setMessage] = useState('');
-  const [chatHistory, setChatHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // State variables to manage user input, chat history, loading state, and errors
+  const [message, setMessage] = useState(''); // Holds user input message
+  const [chatHistory, setChatHistory] = useState([]); // Stores chat messages
+  const [isLoading, setIsLoading] = useState(false); // Indicates if a request is in progress
+  const [error, setError] = useState(null); // Stores any error messages
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!message.trim() || isLoading) return;
+    e.preventDefault(); // Prevents default form submission behavior
+    if (!message.trim() || isLoading) return; // Prevents sending empty messages or multiple submissions while loading
 
+    // Construct user message object
     const userMessage = {
-      role: 'user',
-      content: message,
-      timestamp: new Date().toISOString(),
+      role: 'user', // Identifies message as user input
+      content: message, // Stores user input message
+      timestamp: new Date().toISOString(), // Stores timestamp of message
     };
 
-    setIsLoading(true);
-    setError(null);
-    setChatHistory(prev => [...prev, userMessage]);
-    setMessage('');
+    setIsLoading(true); // Set loading state to true
+    setError(null); // Clear any existing errors
+    setChatHistory(prev => [...prev, userMessage]); // Append user message to chat history
+    setMessage(''); // Clear input field
 
     try {
-      const response = await getRecommendations(message);
-      
+      const response = await getRecommendations(message); // Fetch recommendations based on user input
+
       if (response.error) {
-        throw new Error(response.error);
+        throw new Error(response.error); // Handle API errors
       }
 
+      // Construct AI-generated message object
       const aiMessage = {
-        role: 'assistant',
-        content: response.content,
-        timestamp: new Date().toISOString(),
-        type: response.type
+        role: 'assistant', // Identifies message as AI-generated
+        content: response.content, // Stores AI response content
+        timestamp: new Date().toISOString(), // Stores timestamp of message
+        type: response.type // Determines message type (text or recommendation)
       };
 
-      setChatHistory(prev => [...prev, aiMessage]);
+      setChatHistory(prev => [...prev, aiMessage]); // Append AI response to chat history
     } catch (err) {
-      setError(`Failed to get response: ${err.message}`);
-      console.error('Chat error:', err);
+      setError(`Failed to get response: ${err.message}`); // Store error message in state
+      console.error('Chat error:', err); // Log error to console for debugging
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Reset loading state
     }
   };
 
+  // Function to render chat messages dynamically
   const renderMessage = (chat) => {
     if (chat.type === 'recommendation') {
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {chat.content.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} /> // Display recommended products
           ))}
         </div>
       );
     }
 
     return (
-      <p className="break-words whitespace-pre-wrap">{chat.content}</p>
+      <p className="break-words whitespace-pre-wrap">{chat.content}</p> // Display regular text messages
     );
   };
 
@@ -69,7 +73,7 @@ const ChatPage = () => {
           What is making its way to your cart today?
         </h1>
 
-        {/* Chat Messages */}
+        {/* Chat Messages Section */}
         <div className="flex-1 overflow-auto mb-6 space-y-4">
           {chatHistory.map((chat, index) => (
             <div
@@ -79,8 +83,8 @@ const ChatPage = () => {
             >
               <div
                 className={`${chat.role === 'user'
-                    ? 'bg-blue-500 text-white max-w-[80%]'
-                    : 'bg-gray-100 text-black w-full'
+                  ? 'bg-blue-500 text-white max-w-[80%]'
+                  : 'bg-gray-100 text-black w-full'
                   } rounded-lg p-4`}
               >
                 {renderMessage(chat)}
@@ -94,7 +98,7 @@ const ChatPage = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-gray-100 rounded-lg p-4">
-                Finding the perfect products for you...
+                Typing...
               </div>
             </div>
           )}
@@ -108,7 +112,7 @@ const ChatPage = () => {
           )}
         </div>
 
-        {/* Input Form */}
+        {/* Input Form Section */}
         <form onSubmit={handleSubmit} className="w-full">
           <div className="border-2 border-black rounded-lg p-4 relative">
             <input
