@@ -53,9 +53,11 @@ const ChatPage = () => {
   const renderMessage = (chat) => {
     if (chat.type === 'recommendation') {
       return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-nowrap flex-row overflow-x-auto scrollbar-hide gap-5">
           {chat.content.map((product, index) => (
-            <ProductCard key={index} product={product} /> // Display recommended products
+              <div key={index} className="flex-none w-64">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       );
@@ -78,13 +80,19 @@ const ChatPage = () => {
           {chatHistory.map((chat, index) => (
             <div
               key={index}
-              className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'
-                }`}
+              className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
+              {chat.role !== 'user' && (
+                <img
+                  src="/Cartos_face-removebg-preview.png"
+                  alt="Avatar"
+                  className="h-8 w-8 rounded-full mr-2 self-end object-contain"
+                />
+              )}
               <div
                 className={`${chat.role === 'user'
-                  ? 'bg-blue-500 text-white max-w-[80%]'
-                  : 'bg-gray-100 text-black w-full'
+                    ? 'bg-[#F5F5F5] text-black max-w-[80%]'
+                    : 'bg-white text-black w-full'
                   } rounded-lg p-4`}
               >
                 {renderMessage(chat)}
