@@ -8,6 +8,7 @@ import { useState } from 'react';
 function Age() {
 
    const { userId, session } = useAuth();
+   
    const navigate = useNavigate();
 
    const handleAgeSelect = async (ageRange) => {

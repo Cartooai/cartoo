@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Image } from "@chakra-ui/react";
+import supabaseClient from "../services/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     // State to manage the visibility of the menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [userId, setUserId] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchSession = async () => {
+            const { data, error } = await supabaseClient.auth.getSession();
+            if (!error && data.session) {
+                setUserId(data.session.user.id);
+            }
+        };
+
+        fetchSession();
+    }, []);
+
+
+    const handleSignOut = async () => {
+        const { error } = await supabaseClient.auth.signOut();
+        if (!error) {
+            navigate("/login");
+        }
+    };
 
     // Function to toggle the menu
     const toggleMenu = () => {
@@ -51,6 +74,13 @@ function Header() {
                             <li>
                                 <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                             </li>
+                            {userId && (
+                                <li>
+                                    <button onClick={handleSignOut} className="bg-red-600 text-white p-2 rounded-lg block dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                        Log out
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
