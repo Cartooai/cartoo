@@ -57,7 +57,7 @@ const responseSchema = `{
 
 async function generatePersonalizedRecommendations(userInput, shopifyData, userProfile) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     
     const prompt = `
       You are an expert personal shopping assistant. Analyze the following product data and user profile to provide personalized recommendations.
@@ -115,15 +115,20 @@ async function getRecommendations(message) {
   try {
     // If it's not a product query, use Gemini for normal conversation
     if (!isProductQuery(message)) {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
-      const result = await model.generateContent(message);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+      const promptPrefix = "You are a friendly and helpful shopping assistant. Your name is Cartoo.  Answer user questions about products, availability, and recommendations. If you don't know, say you don't know.  Be concise.";
+
+      const fullPrompt = promptPrefix + " User: " + message;
+
+      const result = await model.generateContent(fullPrompt);
       return {
         type: 'conversation',
         content: result.response.text()
       };
     }
 
-    // Existing product recommendation logic
+    // Product recommendation logic
     const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
     if (sessionError) throw new Error('Failed to get user session: ' + sessionError.message);
     if (!session?.user?.id) throw new Error('No authenticated user found');
