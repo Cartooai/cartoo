@@ -2,17 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: white;
+:root {
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: light;
-  }
+html, body {
+  background-color: white;
+  color: black;
 }
-@media (prefers-color-scheme: light) {
-  html {
+
+/* Remove or modify this media query since we don't want dark mode */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: white;
+    color: black !important;
     color-scheme: light;
   }
 }

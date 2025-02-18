@@ -13,9 +13,18 @@ import Age from './components/Onboarding/Age';
 import Gender from './components/Onboarding/Gender';
 import Interest from './components/Onboarding/Interest';
 import ChatPage from './pages/ChatPage';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
+});
 
 createRoot(document.getElementById('root')).render(
 
+  <ChakraProvider theme={theme}>
   <Provider>
     <BrowserRouter>
       <Routes>
@@ -36,6 +45,7 @@ createRoot(document.getElementById('root')).render(
           </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
+    </ChakraProvider>
 
-  </Provider>,
 )

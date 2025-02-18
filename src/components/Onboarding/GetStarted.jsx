@@ -15,7 +15,7 @@ function GetStarted() {
         </Container>
         <Container className="h-96 flex flex-col items-center justify-center">
             <h1 className="text-4xl font-semibold">Lets Get Started</h1>
-            <p className="text-lg font-normal mt-8">Welcome to Cartos! Let&apos;s get you set up.</p>
+            <p className="text-lg font-normal mt-8">Welcome to Cartoo ai! Let&apos;s get you set up.</p>
             
             <Link to="/dashboard/location" className="mt-8 bg-black text-white rounded-lg w-full">
             <Button label="Get Started" />
