@@ -17,7 +17,7 @@ import Theme from "@chakra-ui/react";
 
 createRoot(document.getElementById('root')).render(
 
-  <Theme appearance="dark">
+  <Theme appearance="light">
     <Provider>
       <BrowserRouter>
         <Routes>
