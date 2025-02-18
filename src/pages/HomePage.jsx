@@ -41,14 +41,14 @@ function HomePage() {
                     loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#FAECAA] h-[400px]">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-black">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                         PERSONALISED SHOPPING
                     </h2>
-                    <p className="text-lg font-normal text-center dark:text-black">
+                    <p className="text-lg font-normal text-center">
                         Shop with Personality; Cartoo <br />
                         Curates with Perfect Picks, Just for you!
                     </p>
-                    <button className="dark:bg-white bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                    <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
                         <Link to="/login">Explore</Link>
                     </button>
                 </div>
@@ -61,15 +61,15 @@ function HomePage() {
                     loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#FC864E] h-[400px]">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-black">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                         SAVE TIME + MONEY
                     </h2>
-                    <p className="text-lg font-normal text-center dark:text-black">
+                    <p className="text-lg font-normal text-center">
                         Shop smart, save time: Cartoo
                         <br />
                         Unlocks your favourite brands in one place.
                     </p>
-                    <button className="dark:bg-white bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                    <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
                         <Link to="/login">Save now</Link>
                     </button>
                 </div>
@@ -82,14 +82,14 @@ function HomePage() {
                     loading="lazy"
                 />
                 <div className="flex flex-col space-y-4 justify-center items-center bg-[#97D5EE] h-[400px]">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-black">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                         SHOP WITH LOVED ONES
                     </h2>
-                    <p className="text-lg font-normal text-center dark:text-black">
+                    <p className="text-lg font-normal text-center">
                         Shop together, Smile Together: Cartoo <br />
                         Brings Friends and Family together on a cart
                     </p>
-                    <button className="dark:bg-white dark:text-black px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                    <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
                         <Link to="/login">Try Now</Link>
                     </button>
                 </div>

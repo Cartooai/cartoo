@@ -129,7 +129,7 @@ const ChatPage = () => {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Ask me about products..."
               disabled={isLoading}
-              className="w-full outline-none text-lg placeholder-black min-h-[80px] resize-none disabled:opacity-50 dark:bg-white"
+              className="w-full outline-none text-lg placeholder-black min-h-[80px] resize-none disabled:opacity-50"
             />
             <button
               type="submit"
