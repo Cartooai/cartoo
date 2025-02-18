@@ -13,32 +13,35 @@ import Age from './components/Onboarding/Age';
 import Gender from './components/Onboarding/Gender';
 import Interest from './components/Onboarding/Interest';
 import ChatPage from './pages/ChatPage';
+import { ColorModeProvider } from "@/components/ui/color-mode"
 import Theme from "@chakra-ui/react";
 
 createRoot(document.getElementById('root')).render(
 
-  <Theme appearance="light">
-    <Provider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path='login' element={<LoginPage />} />
-            {/* <Route path='/dashboard' element={<Dashboard />} /> */}
-          </Route>
-          <Route path="/dashboard" element={<Layout />}>
-            <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path='get-started' element={<ProtectedRoute><GetStarted /></ProtectedRoute>} />
-            <Route path='location' element={<ProtectedRoute><Location /></ProtectedRoute>} />
-            <Route path='name' element={<ProtectedRoute><Name /></ProtectedRoute>} />
-            <Route path='age' element={<ProtectedRoute><Age /></ProtectedRoute>} />
-            <Route path='gender' element={<ProtectedRoute><Gender /></ProtectedRoute>} />
-            <Route path='interest' element={<ProtectedRoute><Interest /></ProtectedRoute>} />
-            <Route path='chat' element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Provider>
-  </Theme>
+  <ColorModeProvider forcedTheme="light">
+    <Theme appearance="light">
+      <Provider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path='login' element={<LoginPage />} />
+              {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+            </Route>
+            <Route path="/dashboard" element={<Layout />}>
+              <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path='get-started' element={<ProtectedRoute><GetStarted /></ProtectedRoute>} />
+              <Route path='location' element={<ProtectedRoute><Location /></ProtectedRoute>} />
+              <Route path='name' element={<ProtectedRoute><Name /></ProtectedRoute>} />
+              <Route path='age' element={<ProtectedRoute><Age /></ProtectedRoute>} />
+              <Route path='gender' element={<ProtectedRoute><Gender /></ProtectedRoute>} />
+              <Route path='interest' element={<ProtectedRoute><Interest /></ProtectedRoute>} />
+              <Route path='chat' element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </Theme>
+  </ColorModeProvider>
 
 )
