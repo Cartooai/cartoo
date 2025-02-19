@@ -14,11 +14,12 @@ const ChatPage = () => {
 
   useEffect(() => {
     Swal.fire({
-      text: 'Please note that it is currently in the beta stage, and responses are being continuously evaluated for performance and accuracy.',
-      confirmButtonText: 'Okay'
-    });
-  }, []); 
-
+      html: '<div style="text-align: left">Welcome to Cartoo!👋</br><br/> We\'re your AI shopping companion, helping you discover the perfect products.</br><br/>  As we\'re in beta, we\'re constantly learning and improving to serve you better.</br><br/> Your feedback helps us grow smarter every day!</div>',
+      confirmButtonText: 'I understand',
+    },
+    );
+    
+   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents default form submission behavior
