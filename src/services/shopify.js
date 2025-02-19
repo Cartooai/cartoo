@@ -1,4 +1,4 @@
-// src/services/shopify.js
+// src/services/shopify.js folder
 const SHOPIFY_URL = 'https://api.escuelajs.co/api/v1/products';
 //const ACCESS_TOKEN = import.meta.env.VITE_TAEILLO_API;
 
@@ -22,7 +22,7 @@ export const fetchProducts = async () => {
         console.error('Error fetching products:', error);
         throw error;
     }
-};
+}; 
 
 // Example response format:
 // [
