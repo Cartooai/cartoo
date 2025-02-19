@@ -1,6 +1,6 @@
 // src/services/shopify.js
-const SHOPIFY_URL = 'https://portal.taeillo.com/api/products';
-const ACCESS_TOKEN = import.meta.env.VITE_TAEILLO_API;
+const SHOPIFY_URL = 'https://api.escuelajs.co/api/v1/products';
+//const ACCESS_TOKEN = import.meta.env.VITE_TAEILLO_API;
 
 export const fetchProducts = async () => {
     try {

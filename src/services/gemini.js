@@ -113,22 +113,8 @@ async function generatePersonalizedRecommendations(userInput, shopifyData, userP
 // Example usage
 async function getRecommendations(message) {
   try {
-    // If it's not a product query, use Gemini for normal conversation
-    if (!isProductQuery(message)) {
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-      const promptPrefix = "You are a friendly and helpful shopping assistant. Your name is Cartoo.  Answer user questions about products, availability, and recommendations. If you don't know, say you don't know.  Be concise.";
-
-      const fullPrompt = promptPrefix + " User: " + message;
-
-      const result = await model.generateContent(fullPrompt);
-      return {
-        type: 'conversation',
-        content: result.response.text()
-      };
-    }
-
-    // Product recommendation logic
+    //Get user profile
     const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
     if (sessionError) throw new Error('Failed to get user session: ' + sessionError.message);
     if (!session?.user?.id) throw new Error('No authenticated user found');
@@ -140,6 +126,33 @@ async function getRecommendations(message) {
       .single();
     
     if (profileError) throw new Error('Failed to fetch profile: ' + profileError.message);
+
+    // If it's not a product query, use Gemini for normal conversation
+    if (!isProductQuery(message)) {
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+      const promptPrefix = `You are a friendly and helpful shopping assistant. Your name is Cartoo.  Answer user questions about products, availability, and recommendations. If you don't know, say you don't know. Be concise. Do not respond with lists or long texts.
+
+      This is the user profile information. Use it in your responses.
+
+      User Profile:
+      - Age: ${profile.age}
+      - Gender: ${profile.gender}
+      - Location: ${profile.location}
+      - Interests: ${profile.interest}
+
+      `;
+
+      const fullPrompt = promptPrefix + " User: " + message;
+
+      const result = await model.generateContent(fullPrompt);
+      return {
+        type: 'conversation',
+        content: result.response.text()
+      };
+    }
+
+    // Product recommendation logic
     
     const shopifyData = await fetchProducts();
     
