@@ -13,12 +13,9 @@ import Age from './components/Onboarding/Age';
 import Gender from './components/Onboarding/Gender';
 import Interest from './components/Onboarding/Interest';
 import ChatPage from './pages/ChatPage';
-import { ColorModeProvider } from "@/components/ui/color-mode"
-import Theme from "@chakra-ui/react";
+import { Theme } from '@chakra-ui/react';
 
 createRoot(document.getElementById('root')).render(
-
-  <ColorModeProvider forcedTheme="light">
     <Theme appearance="light">
       <Provider>
         <BrowserRouter>
@@ -42,6 +39,5 @@ createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </Provider>
     </Theme>
-  </ColorModeProvider>
 
 )
