@@ -16,8 +16,8 @@ const ChatPage = () => {
     Swal.fire({
       html: '<div style="text-align: left">Welcome to Cartoo!👋</br><br/> As we\'re in beta, we\'re constantly learning and improving to serve you better.</br><br/>We may make mistakes as we help you shop, but we\'re getting better every day.<br/><br/> We appreciate your understanding as we learn and grow together.</div>',
       confirmButtonText: 'I understand',
-    },
-    );
+      confirmButtonColor: "black",
+    },);
     
    }, []);
 
