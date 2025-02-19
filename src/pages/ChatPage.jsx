@@ -14,7 +14,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     Swal.fire({
-      html: '<div style="text-align: left">Welcome to Cartoo!👋</br><br/> We\'re your AI shopping companion, helping you discover the perfect products.</br><br/>  As we\'re in beta, we\'re constantly learning and improving to serve you better.</br><br/> Your feedback helps us grow smarter every day!</div>',
+      html: '<div style="text-align: left">Welcome to Cartoo!👋</br><br/> As we\'re in beta, we\'re constantly learning and improving to serve you better.</br><br/>We may make mistakes as we help you shop, but we\'re getting better every day.<br/><br/> We appreciate your understanding as we learn and grow together.</div>',
       confirmButtonText: 'I understand',
     },
     );
