@@ -49,16 +49,24 @@ const responseSchema = `{
           }
         },
         "required": ["score", "reasoning"]
+      },
+      "imageUrl": {
+        "type": "string",
+        "description": "URL of the product image"
+      },
+      "productId": {
+        "type": "string",
+        "description": "Unique identifier for the product"
       }
     },
-    "required": ["title", "productType", "variants", "recommendation"]
+    "required": ["title", "productType", "variants", "recommendation", "imageUrl", "productId"]
   }
 }`;
 
 async function generatePersonalizedRecommendations(userInput, shopifyData, userProfile) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    
+
     const prompt = `
       You are an expert personal shopping assistant. Analyze the following product data and user profile to provide personalized recommendations.
 
@@ -91,10 +99,10 @@ async function generatePersonalizedRecommendations(userInput, shopifyData, userP
     const result = await model.generateContent(prompt);
     const response = result.response;
     const text = response.text();
-    
+
     // Clean the response text - remove any markdown code blocks or extra formatting
     const cleanJson = text.replace(/```json\s*|\s*```/g, '').trim();
-    
+
     try {
       const jsonResponse = JSON.parse(cleanJson);
       return jsonResponse;
@@ -124,7 +132,7 @@ async function getRecommendations(message) {
       .select('age, gender, location, interest')
       .eq('user_id', session.user.id)
       .single();
-    
+
     if (profileError) throw new Error('Failed to fetch profile: ' + profileError.message);
 
     // If it's not a product query, use Gemini for normal conversation
@@ -153,9 +161,9 @@ async function getRecommendations(message) {
     }
 
     // Product recommendation logic
-    
+
     const shopifyData = await fetchProducts();
-    
+
     const recommendations = await generatePersonalizedRecommendations(
       message,
       shopifyData,
