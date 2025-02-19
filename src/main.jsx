@@ -13,10 +13,8 @@ import Age from './components/Onboarding/Age';
 import Gender from './components/Onboarding/Gender';
 import Interest from './components/Onboarding/Interest';
 import ChatPage from './pages/ChatPage';
-import Theme from '@chakra-ui/react';
 
 createRoot(document.getElementById('root')).render(
-    <Theme appearance="light">
       <Provider>
         <BrowserRouter>
           <Routes>
@@ -38,6 +36,5 @@ createRoot(document.getElementById('root')).render(
           </Routes>
         </BrowserRouter>
       </Provider>
-    </Theme>
 
 )
