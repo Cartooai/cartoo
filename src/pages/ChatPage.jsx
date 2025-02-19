@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRecommendations } from '../services/gemini'; // Import function to fetch product recommendations
 import ProductCard from './ProductCard'; // Import component to display individual product details
 import { Theme } from '@chakra-ui/react';
+import Swal from 'sweetalert2';
+
 
 const ChatPage = () => {
   // State variables to manage user input, chat history, loading state, and errors
@@ -9,6 +11,14 @@ const ChatPage = () => {
   const [chatHistory, setChatHistory] = useState([]); // Stores chat messages
   const [isLoading, setIsLoading] = useState(false); // Indicates if a request is in progress
   const [error, setError] = useState(null); // Stores any error messages
+
+  useEffect(() => {
+    Swal.fire({
+      text: 'Please note that it is currently in the beta stage, and responses are being continuously evaluated for performance and accuracy.',
+      confirmButtonText: 'Okay'
+    });
+  }, []); 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents default form submission behavior
