@@ -45,7 +45,7 @@ const responseSchema = `{
           },
           "reasoning": {
             "type": "string",
-            "description": "Personalized explanation for the recommendation"
+            "description": "Very brief personalized explanation for the recommendation, short and concise"
           }
         },
         "required": ["score", "reasoning"]
