@@ -3,6 +3,7 @@ import { useAuth } from "@/auth/AuthContext";
 import { useNavigate } from 'react-router-dom';
 import supabaseClient from '../../services/supabaseClient';
 import { useState } from 'react';
+import { Theme } from "@chakra-ui/react";
 
 function Gender() {
 
@@ -34,7 +35,8 @@ function Gender() {
     };
 
     return (<>
-        <Container fluid bg={"#F2D478"} className="flex flex-col items-left justify-center h-screen">
+       <Theme appearance="light">
+       <Container fluid bg={"#F2D478"} className="flex flex-col items-left justify-center h-screen">
             <Container>
                 <h1 className="text-5xl font-semibold mb-5">Gender *</h1>
                 <h2 className="text-2xl font-semibold mt-5">Help Cartoo describe your gender?</h2>
@@ -44,6 +46,7 @@ function Gender() {
 
             </Container>
         </Container>
+       </Theme>
     </>);
 }
 
