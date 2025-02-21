@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import supabaseClient from '../../services/supabaseClient';
 import { useAuth } from "@/auth/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import { Theme } from '@chakra-ui/react';
+import { Theme } from "@chakra-ui/react";
 
 const Interest = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
