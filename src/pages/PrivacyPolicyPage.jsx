@@ -49,7 +49,7 @@ function PrivacyPolicyPage() {
 
             <h3 className="text-2xl font-semibold mt-6 text-justify">6. Contact Us</h3>
             <p className="mt-2 text-justify">If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
-            <p className="font-semibold mt-2 text-justify">📩 [Insert Contact Email]</p>
+            <p className="font-semibold mt-2 text-justify">📩 hello@cartoo.ai</p>
         </div>
     );
 }
