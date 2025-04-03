@@ -3,6 +3,8 @@ import { Image } from "@chakra-ui/react";
 import supabaseClient from "../services/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { Theme } from "@chakra-ui/react";
+import WalletBalance from "@/features/wallet/components/WalletBalance";
+import Swal from "sweetalert2";
 
 function Header() {
     // State to manage the visibility of the menu
@@ -29,6 +31,16 @@ function Header() {
         }
     };
 
+    const handleWalletOnClick = () => {
+        Swal.fire({
+            html: `<h2>What would you like to do?</h2><br/>
+                <button class="swal2-button swal2-full-width" style="width: 100%; margin-bottom: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Top up</button>
+                <button class="swal2-button swal2-full-width" style="width: 100%; padding: 10px; background-color: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Transaction History</button>
+            `,
+            showConfirmButton: false,
+        })
+    }
+
     // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -52,6 +64,17 @@ function Header() {
                             {/* <a href="/login">
                         <button type="button" className="text-black bg-[#E6F48C] hover:bg-[#FAECAA] focus:ring-4 focus:outline-none focus:ring-blue-300 px-6 py-4 rounded-lg font-medium shadow-lg text-center">Get started</button>
                         </a> */}
+                            {
+                                userId && (
+                                    <button className="bg-black text-white p-2 w-full rounded-md flex" onClick={handleWalletOnClick}>
+                                        <WalletBalance />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="my-auto ml-1">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                    </button>
+                                )
+                            }
                             <button
                                 onClick={toggleMenu}
                                 type="button"
@@ -66,19 +89,25 @@ function Header() {
                             </button>
                         </div>
                         <div className={`items-center justify-between ${isMenuOpen ? 'flex' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-cta">
-                            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-white md:dark:bg-white dark:bg-white">
                                 <li>
-                                    <a href="#" className="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
+                                    <a href="/" className="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                                    <a href="#" className="block py-2 px-3 md:p-0 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
                                 </li>
                                 <li>
-                                    <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                                    <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Terms</a>
                                 </li>
                                 {userId && (
                                     <li>
-                                        <button onClick={handleSignOut} className="bg-red-600 text-white p-2 rounded-lg block dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                        <button onClick={handleSignOut} className=" text-red-700 font-bold rounded-lg block dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                             Log out
                                         </button>
                                     </li>
