@@ -3,8 +3,6 @@ import { Image } from "@chakra-ui/react";
 import supabaseClient from "../services/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { Theme } from "@chakra-ui/react";
-import WalletBalance from "@/features/wallet/components/WalletBalance";
-import Swal from "sweetalert2";
 
 function Header() {
     // State to manage the visibility of the menu
@@ -31,15 +29,6 @@ function Header() {
         }
     };
 
-    const handleWalletOnClick = () => {
-        Swal.fire({
-            html: `<h2>What would you like to do?</h2><br/>
-                <button class="swal2-button swal2-full-width" style="width: 100%; margin-bottom: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Top up</button>
-                <button class="swal2-button swal2-full-width" style="width: 100%; padding: 10px; background-color: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Transaction History</button>
-            `,
-            showConfirmButton: false,
-        })
-    }
 
     // Function to toggle the menu
     const toggleMenu = () => {
@@ -64,17 +53,7 @@ function Header() {
                             {/* <a href="/login">
                         <button type="button" className="text-black bg-[#E6F48C] hover:bg-[#FAECAA] focus:ring-4 focus:outline-none focus:ring-blue-300 px-6 py-4 rounded-lg font-medium shadow-lg text-center">Get started</button>
                         </a> */}
-                            {
-                                userId && (
-                                    <button className="bg-black text-white p-2 w-full rounded-md flex" onClick={handleWalletOnClick}>
-                                        <WalletBalance />
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="my-auto ml-1">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                )
-                            }
+
                             <button
                                 onClick={toggleMenu}
                                 type="button"
