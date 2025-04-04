@@ -14,6 +14,9 @@ import Gender from './components/Onboarding/Gender';
 import Interest from './components/Onboarding/Interest';
 import ChatPage from './pages/ChatPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import ContactUsPage from './pages/ContactUsPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import AboutUsPage from './pages/AboutUsPage';
 
 createRoot(document.getElementById('root')).render(
   <Provider>
@@ -22,7 +25,10 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path='privacy-policy' element={<PrivacyPolicyPage />} />
+          <Route path='contact-us' element={<ContactUsPage />} />
           <Route path='login' element={<LoginPage />} />
+          <Route path='terms' element={<TermsOfServicePage />} />
+          <Route path='about' element={<AboutUsPage />} />
           {/* <Route path='/dashboard' element={<Dashboard />} /> */}
         </Route>
         <Route path="/dashboard" element={<Layout />}>

@@ -35,65 +35,79 @@ function HomePage() {
                         />
                     </Flex>
                 </Container>
+
+                {/* Update sections */}
                 <div>
-                    <img
-                        src="/onboarding_page_1.jpg"
-                        alt="Featured image 1"
-                        className="w-full h-[400px] md:h-[600px] object-cover object-right-bottom"
-                        loading="lazy"
-                    />
-                    <div className="flex flex-col space-y-4 justify-center items-center bg-[#FAECAA] h-[400px]">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                            PERSONALISED SHOPPING
-                        </h2>
-                        <p className="text-lg font-normal text-center">
-                            Shop with Personality; Cartoo <br />
-                            Curates with Perfect Picks, Just for you!
-                        </p>
-                        <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
-                            <Link to="/login">Explore</Link>
-                        </button>
+                    {/* Section 1: Image Left, Text Right */}
+                    <div className="md:flex md:flex-row">
+                        <div className="w-full md:w-1/2">
+                            <img
+                                src="/onboarding_page_1_11zon.jpg"
+                                alt="Personalised Shopping Feature"
+                                className="w-full h-[400px] md:h-[600px] object-cover object-right-bottom"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col space-y-4 justify-center items-center bg-[#FAECAA] h-[400px] md:h-[600px] p-4 md:p-8">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+                                PERSONALISED SHOPPING
+                            </h2>
+                            <p className="text-lg font-normal text-center">
+                                Shop with Personality; Cartoo <br />
+                                Curates with Perfect Picks, Just for you!
+                            </p>
+                            <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                                <Link to="/login">Explore</Link>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <img
-                        src="/onboarding_page_2.jpg"
-                        alt="Featured image 1"
-                        className="w-full h-[400px] md:h-[600px] object-cover object-center"
-                        loading="lazy"
-                    />
-                    <div className="flex flex-col space-y-4 justify-center items-center bg-[#FC864E] h-[400px]">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                            SAVE TIME + MONEY
-                        </h2>
-                        <p className="text-lg font-normal text-center">
-                            Shop smart, save time: Cartoo
-                            <br />
-                            Unlocks your favourite brands in one place.
-                        </p>
-                        <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
-                            <Link to="/login">Save now</Link>
-                        </button>
+
+                    {/* Section 2: Text Left, Image Right */}
+                    <div className="md:flex md:flex-row-reverse">
+                        <div className="w-full md:w-1/2">
+                            <img
+                                src="/onboarding_page_2_11zon.jpg"
+                                alt="Save Time and Money Feature"
+                                className="w-full h-[400px] md:h-[600px] object-cover object-center"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col space-y-4 justify-center items-center bg-[#FC864E] h-[400px] md:h-[600px] p-4 md:p-8">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+                                SAVE TIME + MONEY
+                            </h2>
+                            <p className="text-lg font-normal text-center">
+                                Shop smart, save time: Cartoo <br />
+                                Unlocks your favourite brands in one place.
+                            </p>
+                            <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                                <Link to="/login">Save now</Link>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <img
-                        src="/onboarding_page_3.png"
-                        alt="Featured image 1"
-                        className="w-full h-[400px] md:h-[600px] object-cover"
-                        loading="lazy"
-                    />
-                    <div className="flex flex-col space-y-4 justify-center items-center bg-[#97D5EE] h-[400px]">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                            SHOP WITH LOVED ONES
-                        </h2>
-                        <p className="text-lg font-normal text-center">
-                            Shop together, Smile Together: Cartoo <br />
-                            Brings Friends and Family together on a cart
-                        </p>
-                        <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
-                            <Link to="/login">Try Now</Link>
-                        </button>
+
+                    {/* Section 3: Image Left, Text Right */}
+                    <div className="md:flex md:flex-row">
+                        <div className="w-full md:w-1/2">
+                            <img
+                                src="/onboarding_page_3_11zon_11zon.png"
+                                alt="Shop With Loved Ones Feature"
+                                className="w-full h-[400px] md:h-[600px] object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col space-y-4 justify-center items-center bg-[#97D5EE] h-[400px] md:h-[600px] p-4 md:p-8">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+                                SHOP WITH LOVED ONES
+                            </h2>
+                            <p className="text-lg font-normal text-center">
+                                Shop together, Smile Together: Cartoo <br />
+                                Brings Friends and Family together on a cart
+                            </p>
+                            <button className="bg-white px-6 py-4 rounded-lg font-medium shadow-lg hover:bg-[#E6F48C] transition-colors">
+                                <Link to="/login">Try Now</Link>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </Theme>
