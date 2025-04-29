@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { getRecommendations } from '../services/gemini'; // Import function to fetch product recommendations
-import ProductCard from './ProductCard'; // Import component to display individual product details
-import { Theme } from '@chakra-ui/react';
-import Swal from 'sweetalert2';
-
+import React, { useState, useEffect } from "react";
+import { getRecommendations } from "../services/gemini"; // Import function to fetch product recommendations
+import ProductCard from "./ProductCard"; // Import component to display individual product details
+import { Theme } from "@chakra-ui/react";
+import Swal from "sweetalert2";
 
 const ChatPage = () => {
   // State variables to manage user input, chat history, loading state, and errors
-  const [message, setMessage] = useState(''); // Holds user input message
+  const [message, setMessage] = useState(""); // Holds user input message
   const [chatHistory, setChatHistory] = useState([]); // Stores chat messages
   const [isLoading, setIsLoading] = useState(false); // Indicates if a request is in progress
   const [error, setError] = useState(null); // Stores any error messages
 
   useEffect(() => {
     Swal.fire({
-      html: '<div style="text-align: left">Welcome to Cartoo!👋</br><br/> As we\'re in beta, we\'re constantly learning and improving to serve you better.</br><br/>We may make mistakes as we help you shop, but we\'re getting better every day.<br/><br/> We appreciate your understanding as we learn and grow together.</div>',
-      confirmButtonText: 'I understand',
+      html: "<div style=\"text-align: left\">Welcome to Cartoo!👋</br><br/> As we're in beta, we're constantly learning and improving to serve you better.</br><br/>We may make mistakes as we help you shop, but we're getting better every day.<br/><br/> We appreciate your understanding as we learn and grow together.</div>",
+      confirmButtonText: "I understand",
       confirmButtonColor: "black",
-    },);
-    
-   }, []);
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents default form submission behavior
@@ -27,35 +25,35 @@ const ChatPage = () => {
 
     // Construct user message object
     const userMessage = {
-      role: 'user', // Identifies message as user input
+      role: "user", // Identifies message as user input
       content: message, // Stores user input message
       timestamp: new Date().toISOString(), // Stores timestamp of message
     };
 
     setIsLoading(true); // Set loading state to true
     setError(null); // Clear any existing errors
-    setChatHistory(prev => [...prev, userMessage]); // Append user message to chat history
-    setMessage(''); // Clear input field
+    setChatHistory((prev) => [...prev, userMessage]); // Append user message to chat history
+    setMessage(""); // Clear input field
 
     try {
       const response = await getRecommendations(message); // Fetch recommendations based on user input
-
+      console.log("Recommendated AI products:", response); // Log API response for debugging
       if (response.error) {
         throw new Error(response.error); // Handle API errors
       }
 
       // Construct AI-generated message object
       const aiMessage = {
-        role: 'assistant', // Identifies message as AI-generated
+        role: "assistant", // Identifies message as AI-generated
         content: response.content, // Stores AI response content
         timestamp: new Date().toISOString(), // Stores timestamp of message
-        type: response.type // Determines message type (text or recommendation)
+        type: response.type, // Determines message type (text or recommendation)
       };
 
-      setChatHistory(prev => [...prev, aiMessage]); // Append AI response to chat history
+      setChatHistory((prev) => [...prev, aiMessage]); // Append AI response to chat history
     } catch (err) {
       setError(`Failed to get response: ${err.message}`); // Store error message in state
-      console.error('Chat error:', err); // Log error to console for debugging
+      console.error("Chat error:", err); // Log error to console for debugging
     } finally {
       setIsLoading(false); // Reset loading state
     }
@@ -63,14 +61,26 @@ const ChatPage = () => {
 
   // Function to render chat messages dynamically
   const renderMessage = (chat) => {
-    if (chat.type === 'recommendation') {
+    if (chat.type === "recommendation") {
+      console.log("Rendered recommendation:", chat.content.products); // Log recommendation for debugging
       return (
         <div className="flex flex-nowrap flex-row overflow-x-auto scrollbar-hide gap-5">
-          {chat.content.map((product, index) => (
+          {chat.content.products.map((product, index) => (
             <div key={index} className="flex-none w-64">
               <ProductCard product={product} />
             </div>
           ))}
+        </div>
+      );
+    }
+
+    if (chat.content?.error) {
+      return (
+        <div
+          className="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg"
+          role="alert"
+        >
+          {chat.content.error}
         </div>
       );
     }
@@ -93,9 +103,11 @@ const ChatPage = () => {
             {chatHistory.map((chat, index) => (
               <div
                 key={index}
-                className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${
+                  chat.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
-                {chat.role !== 'user' && (
+                {chat.role !== "user" && (
                   <img
                     src="/Cartos_face-removebg-preview.png"
                     alt="Avatar"
@@ -103,10 +115,11 @@ const ChatPage = () => {
                   />
                 )}
                 <div
-                  className={`${chat.role === 'user'
-                    ? 'bg-[#F5F5F5] text-black max-w-[80%]'
-                    : 'bg-white text-black w-full'
-                    } rounded-lg p-4`}
+                  className={`${
+                    chat.role === "user"
+                      ? "bg-[#F5F5F5] text-black max-w-[80%]"
+                      : "bg-white text-black w-full"
+                  } rounded-lg p-4`}
                 >
                   {renderMessage(chat)}
                   <span className="text-xs opacity-70 mt-1 block">
@@ -118,9 +131,7 @@ const ChatPage = () => {
 
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 rounded-lg p-4">
-                  Typing...
-                </div>
+                <div className="bg-gray-100 rounded-lg p-4">Typing...</div>
               </div>
             )}
 
