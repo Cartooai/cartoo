@@ -11,7 +11,11 @@ const ProductCard = ({ product }) => {
       {/* Product Image */}
       <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
         {imageLink ? (
-          <img src={imageLink} alt={title} className="object-cover w-full h-full" />
+          <img
+            src={imageLink}
+            alt={title}
+            className="object-contain w-full h-full"
+          />
         ) : (
           <span className="text-gray-500">No Image</span>
         )}
@@ -40,4 +44,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
